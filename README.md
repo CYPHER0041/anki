@@ -3,7 +3,7 @@
 [![Build status](https://badge.buildkite.com/c9edf020a4aec976f9835e54751cc5409d843adbb66d043bd3.svg?branch=main)](https://buildkite.com/ankitects/anki-ci)
 
 This repo contains the source code for the computer version of
-[Anki](https://apps.ankiweb.net).
+[Anki](https://apps.ankiweb.net). (This is a fork of v 25.09.2)
 
 # About
 
