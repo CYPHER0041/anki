@@ -1,0 +1,15 @@
+#Compose version of docker run command in readme
+services:
+    anki-sync-server:
+        container_name: anki-sync-server
+        image: anki-sync-server:latest
+        ports:
+        - 8080:8080
+        volumes:
+        - anki-sync-server-data:/anki_data 
+        environment:
+        - "SYNC_USER1=admin:admin" #username:password
+
+volumes:
+    anki-sync-server-data:
+        driver: local

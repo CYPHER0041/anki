@@ -26,17 +26,21 @@ the build products and runtime dependencies from the rest of your system.
 
 # Building image
 
-To proceed with building, you must specify the Anki version you want, by replacing `<version>` with something like `24.11` and `<Dockerfile>` with the chosen Dockerfile (e.g., `Dockerfile` or `Dockerfile.distroless`)
+To proceed with building, you must specify the Anki version you want, by replacing `<version>` with the version of this fork `25.09.2` and `<Dockerfile>` with the chosen Dockerfile (e.g., `Dockerfile` or `Dockerfile.distroless`)
 
 ```bash
 # Execute this command from this directory
 docker build -f <Dockerfile> --no-cache --build-arg ANKI_VERSION=<version> -t anki-sync-server .
 ```
+To build for a specific platform (x86 Linux, ARM Mac or Windows machines), use the --platform flag.
 
+```bash
+# Builds for all platforms
+docker buildx build -f Dockerfile.distroless --platform linux/amd64,linux/arm64,windows/amd64 --no-cache --build-arg ANKI_VERSION=25.09.2 -t anki-sync-server:multiarch .
+```
 # Run container
 
-Once done with build, you can proceed with running this image with the following command:
-
+Once done with build, you can proceed with running this image with the following command
 ```bash
 # this will create anki server
 docker run -d \
@@ -46,7 +50,10 @@ docker run -d \
     --name anki-sync-server \
     anki-sync-server
 ```
-
+Running the docker compose file will have the same effect as the above command. 
+```bash
+docker compose up -d
+```
 If the image you are using was built with `Dockerfile` you can specify the
 `PUID` and `PGID` env variables for the user and group id of the process that
 will run the anki-sync-server process. This is valuable when you want the files
